@@ -21,6 +21,13 @@ INTERNAL_API_KEY = os.getenv("INTERNAL_API_KEY", "dev-key")
 MODE = os.getenv("MODE", "observe")  # "observe" or "active"
 
 app = FastAPI(title="Ichung'wah Moderation & Monitoring MVP")
+from fastapi.responses import RedirectResponse
+
+@app.get("/")
+async def root():
+    # send people to the demo page by default
+    return RedirectResponse(url="/demo")
+
 
 # CORS (allow all for MVP; restrict later)
 app.add_middleware(
